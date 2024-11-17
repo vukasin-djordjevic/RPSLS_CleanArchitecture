@@ -1,0 +1,31 @@
+version: '3.4'
+name: RPSSL-CleanArchitecture
+services:
+  rpssl.api:
+    image: ${DOCKER_REGISTRY-}webapi
+    container_name: rpssl-api
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+
+  rpssl.db:
+    image: postgres:latest
+    container_name: rpssl-db
+    environment:
+      - POSTGRES_DB=rpssl
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  rpssl.seq:
+    image: datalust/seq:latest
+    container_name: rpssl-seq
+    environment:
+        - ACCEPT_EULA=Y
+    ports:
+     - 5431:5431
+     - 8081:80  
+  
