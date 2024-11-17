@@ -27,6 +27,9 @@ namespace Persistence
 
             services.AddScoped<IGameResultRepository, GameResultRepository>();
 
+            services.AddHealthChecks()
+                .AddNpgSql(configuration.GetConnectionString("Database")!);
+
             return services;
         }
     }

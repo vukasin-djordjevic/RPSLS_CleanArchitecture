@@ -49,6 +49,8 @@ builder.Host.UseSerilog((context, configuration) =>
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -66,6 +68,8 @@ app.UseSerilogRequestLogging();
 app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
+
+app.MapHealthChecks("health");
 
 app.MapControllers();
 
