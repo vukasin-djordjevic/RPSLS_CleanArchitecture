@@ -1,11 +1,9 @@
 ﻿using Application.Abstractions;
 using Application.Abstractions.Messaging;
 using Application.Abstractions.RandomNumberService;
-using Application.Choices.Queries.GetRandomChoice;
 using Application.Data;
 using Domain.GameResults;
 using Domain.Shared;
-using System.Numerics;
 
 namespace Application.GameResults.Commands
 {
