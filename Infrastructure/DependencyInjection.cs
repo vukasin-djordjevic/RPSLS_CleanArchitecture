@@ -16,12 +16,11 @@ namespace Infrastructure
             .BindConfiguration(RandomNumberServiceSettings.ConfigurationSection)
             .ValidateOnStart();
 
-            var retryPolicy = HttpPolicyExtensions.HandleTransientHttpError().WaitAndRetryAsync(1, attempt => TimeSpan.FromMilliseconds(200*attempt));
+            var retryPolicy = HttpPolicyExtensions.HandleTransientHttpError().WaitAndRetryAsync(3, attempt => TimeSpan.FromMilliseconds(200*attempt));
 
             services.AddHttpClient<IRandomNumberService, RandomNumberService>(httpClient =>
             {
-                httpClient.BaseAddress = new Uri("https://localhost:7061");
-                //httpClient.BaseAddress = new Uri("https://codechallenge.boohma.com/random");
+                httpClient.BaseAddress = new Uri("https://codechallenge.boohma.com/random");
             })
             .AddPolicyHandler(retryPolicy)
             .ConfigurePrimaryHttpMessageHandler(() =>
