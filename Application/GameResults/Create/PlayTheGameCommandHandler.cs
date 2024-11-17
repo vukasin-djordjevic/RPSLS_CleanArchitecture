@@ -47,8 +47,10 @@ namespace Application.GameResults.Commands
 
             var results = RPSSLCalculations.PlayTheGame(request.playersChoice, computersChoice);
 
+            var newId = Guid.NewGuid();
+
             var gameResult = new GameResult { 
-                Id = Guid.NewGuid(),
+                Id = newId,
                 Results = results,
                 Player = request.playersChoice,
                 Computer = computersChoice,
@@ -59,7 +61,7 @@ namespace Application.GameResults.Commands
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            var response = new GameResultResponse(results, request.playersChoice, computersChoice);
+            var response = new GameResultResponse(newId, results, request.playersChoice, computersChoice);
 
             return Result.Success(response);
         }

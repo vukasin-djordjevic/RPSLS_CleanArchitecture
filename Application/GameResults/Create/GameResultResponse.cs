@@ -1,5 +1,5 @@
 ﻿
 namespace Application.GameResults.Commands
 {
-    public sealed record GameResultResponse(string results, int player, int computer);
+    public sealed record GameResultResponse(Guid id, string results, int player, int computer);
 }
