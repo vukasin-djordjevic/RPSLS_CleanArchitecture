@@ -19,7 +19,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
 ### Choices
 	Get all the choices that are usable for the UI.
 
-  	GET: /choice
+  	GET: v1/choice
   	
    	Result: application/json
 	[
@@ -32,7 +32,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
 ### Choice
 	Get a randomly generated choice.
 
-  	GET: /choice
+  	GET: v1/choice
   	
    	Result: application/json
 	{
@@ -43,7 +43,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
 ### Play
 	Play a round against a computer opponent.
 
-  	POST: /play
+  	POST: v1/play
   	
    	Data: application/json
 	{
@@ -60,7 +60,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
   ### Scoreboard
 	Returns not more than last ten game results (if there is less thant ten results in the database, it will return all of them).
 
-  	GET: /scoreboard
+  	GET: v1/scoreboard
   	
    	Result: application/json
 	[
@@ -75,7 +75,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
   ### ResetScoreboard
 	Deletes ALL the game results from the database.
 
-  	DELETE: /resetScoreboard
+  	DELETE: v1/resetScoreboard
   
 
 ## Brief info
