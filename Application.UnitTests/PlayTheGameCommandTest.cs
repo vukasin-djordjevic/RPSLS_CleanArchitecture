@@ -64,7 +64,7 @@ public class PlayTheGameCommandTest
         PlayTheGameCommand command = new(11);
 
         // Act        
-        var result = validator.Validate(command);
+        var result = await Task.FromResult(validator.Validate(command));
 
         //Assert
         result.IsValid.Should().BeFalse();
