@@ -80,10 +80,10 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
 
 ## Brief info
 
-Upon starting the application, three docker containers will be created, _rpssl.api_ (container with application), _rpssl.db_ (container with PostgreSQL database) and  _rpssl.seq_ (container with Seq by Datalust).
+Upon starting the solution, three docker containers will be created, _rpssl.api_ (container with the service), _rpssl.db_ (container with PostgreSQL database) and  _rpssl.seq_ (container with Seq by Datalust).
 
-As previously mentioned, application listens at **https://localhost:5001**
+As previously mentioned, service listens at **https://localhost:5001**
 
-Database is PostgreSQL and is available at port 5431. It uses local disk to keep the data between starts and stops of the application.
+Database is PostgreSQL and is available at port 5431. It uses local disk to keep the data between starts and stops of the service.
 
 Logs are available at **http://localhost:8081/**. Logs are availble only during the running session.
