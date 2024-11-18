@@ -19,14 +19,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 
     public DbSet<GameResult> GameResults { get; set; }
 
-    //public DbSet<Order> Orders { get; set; }
-
-    //public DbSet<OrderSummary> OrderSummaries { get; set; }
-
-    //public DbSet<Product> Products { get; set; }
-
-    //public DbSet<LineItem> LineItems { get; set; }
-
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         var result = await base.SaveChangesAsync(cancellationToken);

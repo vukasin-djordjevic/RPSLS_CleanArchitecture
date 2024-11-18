@@ -67,9 +67,9 @@ public class PlayTheGameCommandTest
         var expectedResult = "lose";
 
         // Act
-
         var results = await Task.FromResult(RPSSLCalculations.PlayTheGame(player, computer));
 
+        //Assert
         Assert.Equal(expectedResult, results);
     }
 }

@@ -8,8 +8,9 @@ public class EnumHelpers
     public static string GetEnumDescription(Enum value)
     {
         if (value == null) return "";
-        // Get the Description attribute value for the enum value
-        FieldInfo fi = value.GetType().GetField(value.ToString());
+
+        // Gets the Description attribute value for the enum value
+        FieldInfo fi = value.GetType().GetField(value.ToString())!;
         DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
         if (attributes.Length > 0)

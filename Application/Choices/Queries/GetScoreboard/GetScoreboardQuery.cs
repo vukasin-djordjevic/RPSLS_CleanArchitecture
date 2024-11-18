@@ -2,6 +2,4 @@
 
 namespace Application.Choices.Queries.GetScoreboard;
 
-public record GetScoreboardQuery(int count) : IQuery<List<ScoreboardResponse>>
-{
-}
+public record GetScoreboardQuery(int count) : IQuery<List<ScoreboardResponse>>;
