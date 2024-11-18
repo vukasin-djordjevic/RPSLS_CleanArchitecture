@@ -14,12 +14,12 @@ Once started, service becomes available for use.
 If you prefere, you can access to it at **https://localhost:5001/swagger/index.html**. Of course, you can also use the Postman to test its functionalities.
 
 ## Available API endpoints
-Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
+Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1** (in example, to play a new game, hit the address **https://localhost:5001/api/RPSSL/V1/play**)
 
 ### Choices
 	Get all the choices that are usable for the UI.
 
-  	GET: v1/choice
+  	GET: /choice
   	
    	Result: application/json
 	[
@@ -32,7 +32,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
 ### Choice
 	Get a randomly generated choice.
 
-  	GET: v1/choice
+  	GET: /choice
   	
    	Result: application/json
 	{
@@ -43,7 +43,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
 ### Play
 	Play a round against a computer opponent.
 
-  	POST: v1/play
+  	POST: /play
   	
    	Data: application/json
 	{
@@ -60,7 +60,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
   ### Scoreboard
 	Returns not more than last ten game results (if there is less thant ten results in the database, it will return all of them).
 
-  	GET: v1/scoreboard
+  	GET: /scoreboard
   	
    	Result: application/json
 	[
@@ -75,7 +75,7 @@ Base address for all API endpoints is **https://localhost:5001/api/RPSSL/V1/**.
   ### ResetScoreboard
 	Deletes ALL the game results from the database.
 
-  	DELETE: v1/resetScoreboard
+  	DELETE: /resetScoreboard
   
 
 ## Brief info
