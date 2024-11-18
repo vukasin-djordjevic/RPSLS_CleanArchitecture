@@ -2,6 +2,7 @@ using Application.Abstractions;
 using Application.Abstractions.RandomNumberService;
 using Application.Data;
 using Application.GameResults.Commands;
+using Application.GameResults.Create;
 using Domain.GameResults;
 using Domain.Shared;
 using FluentAssertions;
@@ -52,5 +53,20 @@ public class PlayTheGameCommandTest
 
         //Assert
         Assert.Equal(expectedResult, results);
+    }
+
+
+    [Fact]
+    public async Task Validation_Should_Fail_WhenInputIsInvalid()
+    {
+        // Arrange
+        PlayTheGameCommandValidator validator = new PlayTheGameCommandValidator();
+        PlayTheGameCommand command = new(11);
+
+        // Act        
+        var result = validator.Validate(command);
+
+        //Assert
+        result.IsValid.Should().BeFalse();
     }
 }
