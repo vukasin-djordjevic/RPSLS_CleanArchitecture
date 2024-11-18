@@ -4,7 +4,7 @@ using Persistence;
 using Presentation;
 using Serilog;
 using WebApi.Extensions;
-using WebApi.Infrastructure;
+using WebApi.GlobalExceptions;
 using WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,7 +39,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure()
+    .AddInfrastructure(builder.Configuration)
     .AddPresentation()
     .AddPersistence(builder.Configuration);
 
