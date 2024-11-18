@@ -1,12 +1,11 @@
 ﻿
-namespace Domain.Enums
+namespace Domain.Enums;
+
+public enum Choices
 {
-    public enum Choices
-    {
-        rock = 1,
-        paper = 2,
-        scissors = 3,
-        lizard = 4,
-        spock = 5
-    }
+    rock = 1,
+    paper = 2,
+    scissors = 3,
+    lizard = 4,
+    spock = 5
 }

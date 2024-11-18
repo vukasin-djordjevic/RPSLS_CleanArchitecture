@@ -1,10 +1,9 @@
 ﻿using System.Reflection;
 
-namespace Domain
-{
+namespace Domain;
 
-    public static class AssemblyReference
-    {
-        public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
-    }
+
+public static class AssemblyReference
+{
+    public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
 }

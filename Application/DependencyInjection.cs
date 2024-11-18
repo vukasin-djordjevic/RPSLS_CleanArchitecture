@@ -1,26 +1,25 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Application.Abstractions.Behaviors;
+using FluentValidation;
 using MediatR;
-using Application.Abstractions.Behaviors;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Application
+namespace Application;
+
+public static class DependencyInjection
 {
-    public static class DependencyInjection
+    public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        var assembly = typeof(DependencyInjection).Assembly;
+
+        services.AddMediatR(cfg =>
         {
-            var assembly = typeof(DependencyInjection).Assembly;
+            cfg.RegisterServicesFromAssemblies(assembly);
+            cfg.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
+        });
 
-            services.AddMediatR(cfg =>
-            {
-                cfg.RegisterServicesFromAssemblies(assembly);
-                cfg.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
-            });
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
+        services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true);
 
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
-            services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true);
-
-            return services;
-        }
+        return services;
     }
 }

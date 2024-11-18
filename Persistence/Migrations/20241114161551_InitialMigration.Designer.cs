@@ -9,52 +9,51 @@ using Persistence;
 
 #nullable disable
 
-namespace Persistence.Migrations
+namespace Persistence.Migrations;
+
+[DbContext(typeof(ApplicationDbContext))]
+[Migration("20241114161551_InitialMigration")]
+partial class InitialMigration
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241114161551_InitialMigration")]
-    partial class InitialMigration
+    /// <inheritdoc />
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "8.0.10")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.GameResults.GameResult", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
+        modelBuilder.Entity("Domain.GameResults.GameResult", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid")
+                    .HasColumnName("id");
 
-                    b.Property<int>("Computer")
-                        .HasColumnType("integer")
-                        .HasColumnName("computer");
+                b.Property<int>("Computer")
+                    .HasColumnType("integer")
+                    .HasColumnName("computer");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created");
+                b.Property<DateTime>("Created")
+                    .HasColumnType("timestamp with time zone")
+                    .HasColumnName("created");
 
-                    b.Property<int>("Player")
-                        .HasColumnType("integer")
-                        .HasColumnName("player");
+                b.Property<int>("Player")
+                    .HasColumnType("integer")
+                    .HasColumnName("player");
 
-                    b.Property<string>("Results")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("results");
+                b.Property<string>("Results")
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasColumnName("results");
 
-                    b.HasKey("Id")
-                        .HasName("pk_game_results");
+                b.HasKey("Id")
+                    .HasName("pk_game_results");
 
-                    b.ToTable("game_results", (string)null);
-                });
+                b.ToTable("game_results", (string)null);
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

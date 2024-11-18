@@ -4,20 +4,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Application.Data
+namespace Application.Data;
+
+public interface IApplicationDbContext
 {
-    public interface IApplicationDbContext
-    {
-        DbSet<GameResult> GameResults { get; set; }
+    DbSet<GameResult> GameResults { get; set; }
 
-        //DbSet<Order> Orders { get; set; }
+    //DbSet<Order> Orders { get; set; }
 
-        //DbSet<OrderSummary> OrderSummaries { get; set; }
+    //DbSet<OrderSummary> OrderSummaries { get; set; }
 
-        //DbSet<Product> Products { get; set; }
+    //DbSet<Product> Products { get; set; }
 
-        DatabaseFacade Database { get; }
+    DatabaseFacade Database { get; }
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-    }
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

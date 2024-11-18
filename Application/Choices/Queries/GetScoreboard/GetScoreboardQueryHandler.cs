@@ -2,30 +2,29 @@
 using Domain.GameResults;
 using Domain.Shared;
 
-namespace Application.Choices.Queries.GetScoreboard
+namespace Application.Choices.Queries.GetScoreboard;
+
+internal sealed class GetScoreboardQueryHandler
+: IQueryHandler<GetScoreboardQuery, List<ScoreboardResponse>>
 {
-    internal sealed class GetScoreboardQueryHandler
-    : IQueryHandler<GetScoreboardQuery, List<ScoreboardResponse>>
+    private readonly IGameResultRepository _gameResultRepository;
+
+    public GetScoreboardQueryHandler(IGameResultRepository gameResultRepository)
     {
-        private readonly IGameResultRepository _gameResultRepository;
+        _gameResultRepository = gameResultRepository;
+    }
 
-        public GetScoreboardQueryHandler(IGameResultRepository gameResultRepository)
+    public async Task<Result<List<ScoreboardResponse>>> Handle(GetScoreboardQuery request, CancellationToken cancellationToken)
+    {
+        var scoreboard = await _gameResultRepository.GetScoreboardAsync(request.count, cancellationToken);
+
+        List<ScoreboardResponse> responseList = new List<ScoreboardResponse>();
+
+        foreach (var position in scoreboard)
         {
-            _gameResultRepository = gameResultRepository;
+            responseList.Add(new ScoreboardResponse(position.Results, position.Player, position.Computer, position.Created));
         }
 
-        public async Task<Result<List<ScoreboardResponse>>> Handle(GetScoreboardQuery request, CancellationToken cancellationToken)
-        {
-            var scoreboard = await _gameResultRepository.GetScoreboardAsync(request.count, cancellationToken);
-
-            List<ScoreboardResponse> responseList = new List<ScoreboardResponse>();
-
-            foreach (var position in scoreboard)
-            {
-                responseList.Add(new ScoreboardResponse(position.Results, position.Player, position.Computer, position.Created));
-            }
-
-            return responseList;
-        }
+        return responseList;
     }
 }

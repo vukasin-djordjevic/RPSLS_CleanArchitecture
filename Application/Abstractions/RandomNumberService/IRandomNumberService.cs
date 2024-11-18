@@ -1,7 +1,6 @@
-﻿namespace Application.Abstractions.RandomNumberService
+﻿namespace Application.Abstractions.RandomNumberService;
+
+public interface IRandomNumberService
 {
-    public interface IRandomNumberService
-    {
-        Task<RandomNumberServiceResponse> GetRandomNumberAsync(CancellationToken cancellationToken = default);
-    }
+    Task<RandomNumberServiceResponse> GetRandomNumberAsync(CancellationToken cancellationToken = default);
 }

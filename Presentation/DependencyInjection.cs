@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Presentation
+namespace Presentation;
 
+
+public static class DependencyInjection
 {
-    public static class DependencyInjection
+    public static IServiceCollection AddPresentation(this IServiceCollection services)
     {
-        public static IServiceCollection AddPresentation(this IServiceCollection services) 
-        {            
-            return services;
-        }
+        return services;
     }
 }
