@@ -11,31 +11,25 @@ using NSubstitute;
 namespace Application.UnitTests;
 
 public class PlayTheGameCommandTest
-{
-    private readonly PlayTheGameCommandHandler _handler;
-    private readonly IGameResultRepository _gameResultRepositoryMock;
-    private readonly IUnitOfWork _unitOfWorkMock;
-    private readonly IRandomNumberService _randomNumberServiceMock;
-
-    public PlayTheGameCommandTest()
-    {
-        _gameResultRepositoryMock = Substitute.For<IGameResultRepository>();
-        _unitOfWorkMock = Substitute.For<IUnitOfWork>();
-
-        var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri("https://codechallenge.boohma.com/random");
-        _randomNumberServiceMock = new RandomNumberService(httpClient);
-
-        _handler = new PlayTheGameCommandHandler(
-            _gameResultRepositoryMock,
-            _unitOfWorkMock,
-            _randomNumberServiceMock);
-    }
+{ 
 
     [Fact]
     public async Task Handle_Should_ReturnSuccess_WhenGameSucceeds()
     {
         // Arrange
+
+        IGameResultRepository _gameResultRepositoryMock = Substitute.For<IGameResultRepository>();
+        IUnitOfWork _unitOfWorkMock = _unitOfWorkMock = Substitute.For<IUnitOfWork>();
+
+        var httpClient = new HttpClient();
+        httpClient.BaseAddress = new Uri("https://codechallenge.boohma.com/random");
+        IRandomNumberService _randomNumberServiceMock = new RandomNumberService(httpClient);
+
+        PlayTheGameCommandHandler _handler = new PlayTheGameCommandHandler(
+            _gameResultRepositoryMock,
+            _unitOfWorkMock,
+            _randomNumberServiceMock);
+
         PlayTheGameCommand Command = new(1);
 
         // Act
@@ -44,20 +38,7 @@ public class PlayTheGameCommandTest
         // Assert
         result.IsSuccess.Should().BeTrue();
     }
-
-    [Fact]
-    public async Task Handle_Should_ReturnSuccess_WhenGameFails()
-    {
-        // Arrange
-        PlayTheGameCommand Command = new(11);
-
-        // Act
-        Result<GameResultResponseFull> result = await _handler.Handle(Command, default);
-
-        // Assert
-        result.IsFailure.Should().BeTrue();
-    }
-
+        
     [Fact]
     public async Task Handle_Should_ReturnSuccess_WhenSpockLoseFromLizzard()
     {

@@ -1,4 +1,5 @@
 ﻿using Application.GameResults.Commands;
+using FluentAssertions;
 
 namespace Application.IntegrationTests;
 
@@ -22,5 +23,18 @@ public class GameResultTests : BaseIntegrationTest
         var product = DbContext.GameResults.FirstOrDefault(p => p.Id == result.Value.id);
 
         Assert.NotNull(product);
+    }
+
+    [Fact]
+    public async Task Create_ShouldFail_WhenCommandIsNotValid()
+    {
+        // Arrange
+        var command = new PlayTheGameCommand(11);
+
+        // Act
+        var result = await Sender.Send(command);
+
+
+        result.IsFailure.Should().BeTrue();
     }
 }
