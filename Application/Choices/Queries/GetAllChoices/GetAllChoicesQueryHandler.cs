@@ -12,6 +12,9 @@ internal sealed class GetAllChoicesQueryHandler
     {
         List<ChoiceResponse> choicesList = new List<ChoiceResponse>();
 
+        // This query handler intentionally does not use the database - that seemed
+        // to me as unnecessary roundtrip, since we have only five choices.
+        // In real business case, of course that database would be used.
         for (int i = 1; i <= 5; i++)
         {
             choicesList.Add(new ChoiceResponse(i, ((Domain.Enums.Choices)i).ToString()));

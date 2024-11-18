@@ -30,6 +30,9 @@ internal sealed class GetRandomChoiceQueryHandler
                 $"Random choice could not be obtained"));
         }
 
+        // This query handler intentionally does not use the database - that seemed
+        // to me as unnecessary roundtrip, since we have only five choices.
+        // In real business case, of course that database would be used.
         var choiceId = RPSSLCalculations.GetChoiceByRandomNumber(rndNumber.random_number);
 
         var response = new ChoiceResponse(choiceId, ((Domain.Enums.Choices)choiceId).ToString());
