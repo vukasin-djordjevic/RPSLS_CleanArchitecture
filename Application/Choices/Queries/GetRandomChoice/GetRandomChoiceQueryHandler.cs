@@ -12,6 +12,7 @@ internal sealed class GetRandomChoiceQueryHandler
     public GetRandomChoiceQueryHandler(
         IRandomNumberService randomNumberService)
     {
+        Guard.ThrowIfNull(randomNumberService);
         _randomNumberService = randomNumberService;
     }
 

@@ -11,8 +11,11 @@ where TResponse : Result
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-    public ValidationPipelineBehavior(IEnumerable<IValidator<TRequest>> validators) =>
+    public ValidationPipelineBehavior(IEnumerable<IValidator<TRequest>> validators)
+    {
+        Guard.ThrowIfNull(validators);
         _validators = validators;
+    }
 
     public async Task<TResponse> Handle(
         TRequest request,

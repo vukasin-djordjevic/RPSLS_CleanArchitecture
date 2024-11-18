@@ -11,6 +11,9 @@ internal sealed class ResetScoreboardCommandHandler : IRequestHandler<ResetScore
 
     public ResetScoreboardCommandHandler(IGameResultRepository gameResultRepository, IUnitOfWork unitOfWork)
     {
+        Guard.ThrowIfNull(gameResultRepository);
+        Guard.ThrowIfNull(unitOfWork);
+
         _gameResultRepository = gameResultRepository;
         _unitOfWork = unitOfWork;
     }

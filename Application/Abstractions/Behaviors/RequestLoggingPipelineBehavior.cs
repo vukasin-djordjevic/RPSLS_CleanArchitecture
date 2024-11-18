@@ -13,6 +13,7 @@ internal class RequestLoggingPipelineBehavior<TRequest, TResponse>
     private readonly ILogger<RequestLoggingPipelineBehavior<TRequest, TResponse>> _logger;
     public RequestLoggingPipelineBehavior(ILogger<RequestLoggingPipelineBehavior<TRequest, TResponse>> logger)
     {
+        Guard.ThrowIfNull(logger);
         _logger = logger;
     }
 

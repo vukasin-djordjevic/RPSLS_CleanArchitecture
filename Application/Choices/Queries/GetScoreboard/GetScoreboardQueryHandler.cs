@@ -11,6 +11,7 @@ internal sealed class GetScoreboardQueryHandler
 
     public GetScoreboardQueryHandler(IGameResultRepository gameResultRepository)
     {
+        Guard.ThrowIfNull(gameResultRepository);
         _gameResultRepository = gameResultRepository;
     }
 

@@ -1,4 +1,6 @@
-﻿using Domain.GameResults;
+﻿using Application;
+using Application.Data;
+using Domain.GameResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories;
@@ -9,6 +11,7 @@ internal sealed class GameResultRepository : IGameResultRepository
 
     public GameResultRepository(ApplicationDbContext context)
     {
+        Guard.ThrowIfNull(context);
         _context = context;
     }
 

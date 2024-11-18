@@ -18,6 +18,10 @@ internal sealed class PlayTheGameCommandHandler : ICommandHandler<PlayTheGameCom
         IUnitOfWork unitOfWork,
         IRandomNumberService randomNumberService)
     {
+        Guard.ThrowIfNull(gameResultRepository);
+        Guard.ThrowIfNull(unitOfWork);
+        Guard.ThrowIfNull(randomNumberService);
+
         _gameResultRepository = gameResultRepository;
         _unitOfWork = unitOfWork;
         _randomNumberService = randomNumberService;

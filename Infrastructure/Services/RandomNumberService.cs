@@ -1,4 +1,5 @@
-﻿using Application.Abstractions.RandomNumberService;
+﻿using Application;
+using Application.Abstractions.RandomNumberService;
 using System.Net.Http.Json;
 
 namespace Infrastructure.Services;
@@ -9,6 +10,7 @@ public sealed class RandomNumberService : IRandomNumberService
 
     public RandomNumberService(HttpClient client)
     {
+        Guard.ThrowIfNull(client);
         _client = client;
     }
     public async Task<RandomNumberServiceResponse> GetRandomNumberAsync(CancellationToken cancellationToken = default)
